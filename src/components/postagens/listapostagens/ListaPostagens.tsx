@@ -3,10 +3,11 @@
 import { useContext, useEffect, useState } from "react";
 import { DNA } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { buscar } from "../../../services/Service";
-import CardPostagens from "../cardpostagens/CardPostagens";
 import { AuthContext } from "../../../context/AuthContext";
 import type Postagem from "../../../models/Postagem";
+import { buscar } from "../../../services/Service";
+import CardPostagens from "../cardpostagens/CardPostagens";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function ListaPostagens() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function ListaPostagens() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado");
+      ToastAlerta("Você precisa estar logado!", "info");
       navigate("/");
     }
   }, [token]);
